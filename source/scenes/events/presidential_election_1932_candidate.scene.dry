@@ -70,7 +70,9 @@ view-if: not hindenburg_run
 
 if (dnvp_ideology == "Moderate" && (lvp_formed == 0 or lvp_leader == "Dingeldey")) {
 
-Reviving the Reichsblock that brought Hindenburg to power, the DVP, DNVP, and minor conservative parties are backing war hero and DNVP Reichstag member Paul von Lettow-Vorbeck. Like Hindenburg, Lettow-Vorbeck has a somewhat reactionary background, even including participation in the Kapp Putsch, but he staunchly opposes Nazism and has supported his party's moderate leadership against its challengers. Observers expect us to run a candidate against him, and, seeking to negotiate with both sides, the Center and DDP have yet to decide whether to support his candidacy.}
+Reviving the Reichsblock that brought Hindenburg to power, the DVP, DNVP, and minor conservative parties are backing war hero and DNVP Reichstag member Paul von Lettow-Vorbeck. Like Hindenburg, Lettow-Vorbeck has a somewhat reactionary background, even including participation in the Kapp Putsch, but he staunchly opposes Nazism and has supported his party's moderate leadership against its challengers. Observers expect us to run a candidate against him, and, seeking to negotiate with both sides, the Center and DDP have yet to decide whether to support his candidacy.
+
+var plb_running = 1}
 
 else if ((ddp_ideology == "Moderate" or ddp_ideology == "Left" or lvp_ideology == "Moderate" or lvp_ideology = "Left") && Z_relations > 50 ){
 
@@ -78,7 +80,7 @@ The Weimar Coalition parties have agreed to nominate Hugo Eckener for president!
 
 else{
 
-The Bürgerblock has nominated Hans Luther, Reichsbank president, former prime minister, and the "Politician Without A Party" — a nomination soon seconded by the Center. He's a somewhat uninspiring figure, not very strenuous in his opposition to the Nazis and closely tied with unpopular deflationary politics, but he is at least clearly a democrat.}
+The Bürgerblock has nominated Hans Luther, Reichsbank president, former Chancellor, and the "Politician Without A Party" — a nomination soon seconded by the Center. He's a somewhat uninspiring figure, not very strenuous in his opposition to the Nazis and closely tied with unpopular deflationary politics, but he is at least clearly a democrat.}
 
 @hindenburg
 view-if: hindenburg_run
@@ -90,14 +92,22 @@ In response, he may shift further to the right after the election in an effort t
 
 - @harzburg: We await the decision of the Harzburg Front.
 
-@harzburg
-go-to: duesterberg
+@Stahlhelm
+if plb_running = 0{
+go-to: duesterberg}
 
+The Harzburg Front has fractured, with the Stahlhelm backing Lettow-Vorbeck, due to large grassroots enthusiasm for the man and his own membership in the organization. This has provoked the ire of the DNF, which, lacking the resources to run its own candidate separate from the Stahlhelm, has simply failed to make an endorsement.
 
 @duesterberg
 face-image: img/portraits/duesterberg.jpg
 
-The Harzburg Front has fractured, with the <span style="color: #3E88B3;">**DNVP**</span> and <span style="color: #3E88B3;">**Stahlhelm**</span> nominating a separate candidate than the <span style="color: #7A3C00;">**NSDAP**</span>, who rather run their own candidate. In a deal between the leadership of the <span style="color: #3E88B3;">**Stahlhelm**</span> and Hugenberg, the <span style="color: #3E88B3;">**DNVP**</span> is to support and campaign for whoever the <span style="color: #3E88B3;">**Stahlhelm**</span> nominates, in exchange for the <span style="color: #3E88B3;">**Stahlhelm**</span>'s full support for the <span style="color: #3E88B3;">**DNVP**</span> in the upcoming local elections. The <span style="color: #3E88B3;">**Stahlhelm**</span> have decided to nominate its deputy leader, Theodor Duesterberg.
+if (dnvp_ideology == "Moderate"){
+
+The Harzburg Front has fractured, with the <span style="color: #3E88B3;">**DNF**</span> and <span style="color: #3E88B3;">**Stahlhelm**</span> nominating a separate candidate than the <span style="color: #7A3C00;">**NSDAP**</span>, who rather run their own candidate. The DNVP will be supporting the Bürgerblock candidate. In a deal between the leadership of the <span style="color: #3E88B3;">**Stahlhelm**</span> and Hugenberg, the <span style="color: #3E88B3;">**DNF**</span> is to support and campaign for whoever the <span style="color: #3E88B3;">**Stahlhelm**</span> nominates, in exchange for the <span style="color: #3E88B3;">**Stahlhelm**</span>'s full support for the <span style="color: #3E88B3;">**DNF**</span> in the upcoming local elections. The <span style="color: #3E88B3;">**Stahlhelm**</span> have decided to nominate its deputy leader, Theodor Duesterberg. }
+
+else {
+
+The Harzburg Front has fractured, with the <span style="color: #3E88B3;">**DNVP**</span> and <span style="color: #3E88B3;">**Stahlhelm**</span> nominating a separate candidate than the <span style="color: #7A3C00;">**NSDAP**</span>, who rather run their own candidate. In a deal between the leadership of the <span style="color: #3E88B3;">**Stahlhelm**</span> and Hugenberg, the <span style="color: #3E88B3;">**DNVP**</span> is to support and campaign for whoever the <span style="color: #3E88B3;">**Stahlhelm**</span> nominates, in exchange for the <span style="color: #3E88B3;">**Stahlhelm**</span>'s full support for the <span style="color: #3E88B3;">**DNVP**</span> in the upcoming local elections. The <span style="color: #3E88B3;">**Stahlhelm**</span> have decided to nominate its deputy leader, Theodor Duesterberg.}
 
 - @hitler: Who will the <span style="color: #7A3C00;">**NSDAP**</span> run?
 
@@ -109,13 +119,18 @@ The <span style="color: #7A3C00;">**NSDAP**</span> will run Adolf Hitler, who is
 - @communist: We await the decision the <span style="color: #700000;">Communists</span>.
 
 @communist
-go-to: thalmann
-
+if (concilators == 0) {
+go-to: thalmann}
+else {go-to: muzenburg}
 
 @thalmann
 face-image: img/portraits/ThälmannErnst.jpg
 
 The <span style="color: #700000;">**Communists**</span> will run Ernst Thälmann, their leader and candidate in 1925. If we were to not run a candidate, or to support a right-wing or bourgeois one, Thälmann and the <span style="color: #700000;">**KPD**</span> would greatly capitalize by painting themselves as the only left-wing option in the race. However, if our relations with the <span style="color: #700000;">**KPD**</span> are high enough, we may be able to convince him to drop out in favour of a unity candidate between our two parties.
+
+@muzenburg
+
+The <span style="color: #700000;">**Communists**</span>, following Thälmann's removal from his leadership position, will run Willi Müzenberg, an anti-Stalinist filmmaker and writer. If we were to not run a candidate, or to support a right-wing or bourgeois one, Thälmann and the <span style="color: #700000;">**KPD**</span> would greatly capitalize by painting themselves as the only left-wing option in the race — Müzenberg's propaganda skills and ideological flexibility would greatly aid this. However, if our relations with the <span style="color: #700000;">**KPD**</span> are high enough, we may be able to convince him to drop out in favour of a unity candidate between our two parties, though most expect him to be said unity candidate.
 
 - @socialist: So, what is our decision? Should we run our own candidate?
 
@@ -126,7 +141,17 @@ go-to: braun
 @braun
 face-image: img/portraits/braun.jpg
 
-Otto Braun has been floated around as a candidate for the presidency once more, after his failed run in 1925. He is personally reluctant, and it would take a lot of convincing to get him to run, but after that, could he even win? It's unlikely for bourgeois parties to outright support a <span style="color: #c00000;">socialist</span> for President, even with his reformist and right-wing leanings within our own party. Carl Severing and other Prussian officials have instead proposed running Hugo Eckener, a nationalist anti-<span style="color: #7A3C00;">Nazi</span> Zeppelin pilot, but this possibility has been extinguished with Hindenburg's decision to run again.
+if (plb_running == 1) {
+
+Otto Braun has been floated around as a candidate for the presidency once more, after his failed run in 1925. He is personally reluctant, and it would take a lot of convincing to get him to run, but after that, could he even win? It's unlikely for bourgeois parties to outright support a <span style="color: #c00000;">socialist</span> for President, even with his reformist and right-wing leanings within our own party. Still, he is heavily expected to run, and supporting von Lettow-Vorbeck would be extremely controversial.
+
+} else if (hindenburg_running == 0) {
+
+Otto Braun has been floated around as a candidate for the presidency once more, after his failed run in 1925. He is personally reluctant, and it would take a lot of convincing to get him to run, but after that, could he even win? It's unlikely for bourgeois parties to outright support a <span style="color: #c00000;">socialist</span> for President, even with his reformist and right-wing leanings within our own party. It is also considered unexpected for us to back our own candidate over the Weimar Coalition's choice.
+
+} else {
+
+Otto Braun has been floated around as a candidate for the presidency once more, after his failed run in 1925. He is personally reluctant, and it would take a lot of convincing to get him to run, but after that, could he even win? It's unlikely for bourgeois parties to outright support a <span style="color: #c00000;">socialist</span> for President, even with his reformist and right-wing leanings within our own party. It is possible we could instead back Hindenburg, though this is certainly a strange arrangement. }
 
 So, what's our choice?
 
