@@ -67,8 +67,18 @@ Anyhow, let's see who will be the candidates on <span class="tooltip-text" title
 
 @reactionary
 view-if: not hindenburg_run
-go-to: hindenburg
 
+if (dnvp_ideology == "Moderate" && (lvp_formed == 0 or lvp_leader == "Dingeldey")) {
+
+Reviving the Reichsblock that brought Hindenburg to power, the DVP, DNVP, and minor conservative parties are backing war hero and DNVP Reichstag member Paul von Lettow-Vorbeck. Like Hindenburg, Lettow-Vorbeck has a somewhat reactionary background, even including participation in the Kapp Putsch, but he staunchly opposes Nazism and has supported his party's moderate leadership against its challengers. Observers expect us to run a candidate against him, and, seeking to negotiate with both sides, the Center and DDP have yet to decide whether to support his candidacy.}
+
+else if ((ddp_ideology == "Moderate" or ddp_ideology == "Left" or lvp_ideology == "Moderate" or lvp_ideology = "Left") && Z_relations > 50 ){
+
+The Weimar Coalition parties have agreed to nominate Hugo Eckener for president! A zeppelin manufacturer and the first man to fly an airship around the world, his political position is in support of free markets, international cooperation, and opposition to the Nazis and reactionaries. While we are heavily expected to support him, we technically do not have to.}
+
+else{
+
+The Bürgerblock has nominated Hans Luther, Reichsbank president, former prime minister, and the "Politician Without A Party" — a nomination soon seconded by the Center. He's a somewhat uninspiring figure, not very strenuous in his opposition to the Nazis and closely tied with unpopular deflationary politics, but he is at least clearly a democrat.}
 
 @hindenburg
 view-if: hindenburg_run
